@@ -26,4 +26,32 @@ code {
 .app-logo {
   height: 12rem;
   pointer-events: none;
+  padding-bottom: 24px;
+}
+
+.push-notification-title {
+  font-size: 17px;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.push-notification-text {
+  font-size: 14px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.btn-primary {
+  height: 48px;
+  width: 150px;
+  border-radius: 8px;
+  border: 1px solid #2a63b0;
+  background: #1a75ed;
+  cursor: pointer;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.btn-primary:active {
+  border: 1px solid #1f4373;
 }
