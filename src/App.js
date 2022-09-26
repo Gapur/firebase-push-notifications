@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 
 import logo from './firebase-logo.png';
+import { getFirebaseToken } from './firebase';
 
 const toastOptions = {
   position: "top-right",
@@ -11,6 +13,18 @@ const toastOptions = {
 };
 
 export default function App() {
+  const [showNotificationBanner, setShowNotificationBanner] = useState(Notification.permission === 'default');
+
+  const handleGetFirebaseToken = () => {
+    getFirebaseToken()
+      .then(firebaseToken => {
+        if (firebaseToken) {
+          setShowNotificationBanner(false);
+        }
+      })
+      .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
+  }
+
   const ToastifyNotification = () => (
     <div className="push-notification">
       <h2 className="push-notification-title">New Message</h2>
@@ -20,6 +34,17 @@ export default function App() {
 
   return (
     <div className="app">
+      {showNotificationBanner && <div className="notification-banner">
+        <span>The app needs permission to</span>
+        <a
+          href="#"
+          className="notification-banner-link"
+          onClick={handleGetFirebaseToken}
+        >
+          enable push notifications.
+        </a>
+      </div>}
+
       <img src={logo} className="app-logo" alt="logo" />
 
       <button

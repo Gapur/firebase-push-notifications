@@ -55,3 +55,18 @@ code {
 .btn-primary:active {
   border: 1px solid #1f4373;
 }
+
+.notification-banner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 16px;
+  background: #3e5fcd;
+  font-size: 16px;
+}
+
+.notification-banner-link {
+  margin-left: 4px;
+  color: #ffffff;
+}

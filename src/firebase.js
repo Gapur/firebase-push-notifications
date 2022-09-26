@@ -1,4 +1,5 @@
 import { initializeApp } from "firebase/app";
+import { getToken, getMessaging } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -12,4 +13,9 @@ const firebaseConfig = {
 console.log('*** Environment ***', process.env.REACT_APP_ENV)
 console.log('*** Firebase Config ***', firebaseConfig)
 
-const app = initializeApp(firebaseConfig);
+const firebaseApp = initializeApp(firebaseConfig);
+const messaging = getMessaging(firebaseApp);
+
+export const getFirebaseToken = () => {
+  return getToken(messaging, { vapidKey: process.env.VAPID_KEY });
+};
