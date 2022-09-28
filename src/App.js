@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 
 import logo from './firebase-logo.png';
-import { getFirebaseToken } from './firebase';
+import { getFirebaseToken, onMessageListener } from './firebase';
 
 const toastOptions = {
   position: "top-right",
@@ -14,10 +14,12 @@ const toastOptions = {
 
 export default function App() {
   const [showNotificationBanner, setShowNotificationBanner] = useState(Notification.permission === 'default');
+  const [notification, setNotification] = useState({title: '', body: ''});
 
   const handleGetFirebaseToken = () => {
     getFirebaseToken()
       .then(firebaseToken => {
+        console.log('firebase token: ', firebaseToken);
         if (firebaseToken) {
           setShowNotificationBanner(false);
         }
@@ -25,10 +27,17 @@ export default function App() {
       .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
   }
 
+  onMessageListener().then(payload => {
+    setShow(true);
+    setNotification({title: payload.notification.title, body: payload.notification.body})
+    console.log(payload);
+  }).catch(err => console.log('failed: ', err));
+
+
   const ToastifyNotification = () => (
     <div className="push-notification">
-      <h2 className="push-notification-title">New Message</h2>
-      <p className="push-notification-text">You received a test push notification</p>
+      <h2 className="push-notification-title">{notification.title}</h2>
+      <p className="push-notification-text">{notification.body}</p>
     </div>
   );
 

@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getToken, getMessaging } from 'firebase/messaging';
+import { getToken, getMessaging, onMessage } from 'firebase/messaging';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -17,5 +17,8 @@ const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
 
 export const getFirebaseToken = () => {
-  return getToken(messaging, { vapidKey: process.env.VAPID_KEY });
+  return getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY });
 };
+
+export const onMessageListener = () =>
+  new Promise((resolve) => onMessage(messaging, (payload) => resolve(payload)));
