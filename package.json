@@ -25,7 +25,9 @@
       "react-app/jest"
     ],
     "rules": {
-      "jsx-a11y/anchor-is-valid": "off"
+      "jsx-a11y/anchor-is-valid": "off",
+      "no-undef": "off",
+      "no-restricted-globals": "off"
     }
   },
   "browserslist": {
