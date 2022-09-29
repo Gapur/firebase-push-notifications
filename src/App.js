@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from "react-toastify";
 
 import logo from './firebase-logo.png';
@@ -14,12 +14,20 @@ const toastOptions = {
 
 export default function App() {
   const [showNotificationBanner, setShowNotificationBanner] = useState(Notification.permission === 'default');
-  const [notification, setNotification] = useState({title: '', body: ''});
+  const [notification, setNotification] = useState({ title: '', body: '' });
+
+  useEffect(() => {
+    onMessageListener().then((payload) => {
+      console.log('Received foreground message: ', payload);
+      setNotification({ title: payload.notification.title, body: payload.notification.body });
+      toast(<ToastifyNotification />, toastOptions);
+    }).catch(err => console.log('failed: ', err));
+  }, []);
 
   const handleGetFirebaseToken = () => {
     getFirebaseToken()
       .then(firebaseToken => {
-        console.log('firebase token: ', firebaseToken);
+        console.log('Firebase token: ', firebaseToken);
         if (firebaseToken) {
           setShowNotificationBanner(false);
         }
@@ -27,13 +35,7 @@ export default function App() {
       .catch((err) => console.error('An error occured while retrieving firebase token. ', err))
   }
 
-  onMessageListener().then(payload => {
-    setShow(true);
-    setNotification({title: payload.notification.title, body: payload.notification.body})
-    console.log(payload);
-  }).catch(err => console.log('failed: ', err));
-
-
+  console.log('notification', notification);
   const ToastifyNotification = () => (
     <div className="push-notification">
       <h2 className="push-notification-title">{notification.title}</h2>
@@ -60,7 +62,7 @@ export default function App() {
         className="btn-primary"
         onClick={() => toast(<ToastifyNotification />, toastOptions)}
       >
-        Show notification
+        Show toast notification
       </button>
 
       <ToastContainer />
