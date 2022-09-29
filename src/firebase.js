@@ -16,9 +16,24 @@ console.log('*** Firebase Config ***', firebaseConfig)
 const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
 
-export const getFirebaseToken = () => {
-  return getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY });
+export const getOrRegisterServiceWorker = () => {
+  if ('serviceWorker' in navigator) {
+    return window.navigator.serviceWorker
+      .getRegistration('/firebase-push-notification-scope')
+      .then((serviceWorker) => {
+        if (serviceWorker) return serviceWorker;
+        return window.navigator.serviceWorker.register('/firebase-messaging-sw.js', {
+          scope: '/firebase-push-notification-scope',
+        });
+      });
+  }
+  throw new Error('The browser doens`t support service worker.');
 };
+
+export const getFirebaseToken = () =>
+  getOrRegisterServiceWorker()
+    .then((serviceWorkerRegistration) =>
+      getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY, serviceWorkerRegistration }));
 
 export const onMessageListener = () =>
   new Promise((resolve) => onMessage(messaging, (payload) => resolve(payload)));
