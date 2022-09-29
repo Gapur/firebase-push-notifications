@@ -1,4 +1,4 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
 import { getToken, getMessaging, onMessage } from 'firebase/messaging';
 
 const firebaseConfig = {
@@ -27,7 +27,7 @@ export const getOrRegisterServiceWorker = () => {
         });
       });
   }
-  throw new Error('The browser doens`t support service worker.');
+  throw new Error('The browser doesn`t support service worker.');
 };
 
 export const getFirebaseToken = () =>
@@ -35,5 +35,5 @@ export const getFirebaseToken = () =>
     .then((serviceWorkerRegistration) =>
       getToken(messaging, { vapidKey: process.env.REACT_APP_VAPID_KEY, serviceWorkerRegistration }));
 
-export const onMessageListener = () =>
+export const onForegroundMessage = () =>
   new Promise((resolve) => onMessage(messaging, (payload) => resolve(payload)));
