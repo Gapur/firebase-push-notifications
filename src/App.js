@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 
-import logo from './firebase-logo.png';
+import logo from './sparky-dash-high-five.gif';
 import { getFirebaseToken, onForegroundMessage } from './firebase';
 
 export default function App() {
