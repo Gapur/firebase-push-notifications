@@ -19,7 +19,7 @@ export default function App() {
 
   const handleGetFirebaseToken = () => {
     getFirebaseToken()
-      .then(firebaseToken => {
+      .then((firebaseToken) => {
         console.log('Firebase token: ', firebaseToken);
         if (firebaseToken) {
           setShowNotificationBanner(false);
