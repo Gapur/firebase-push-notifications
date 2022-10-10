@@ -1,16 +1,35 @@
-# Getting Started with Create React App
+<p align="center">
+  <img width="300"src="https://github.com/Gapur/firebase-push-notifications/blob/main/demo.gif">
+</p>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Firebase Push Notifications
 
-## Available Scripts
+Push Notifications With React And Firebase
 
-In the project directory, you can run:
+How to receive push notifications
 
-### `npm start`
+Push notifications are small pop-up messages sent to a user's device or web app that appear even when the app is not open. They can alert real-time updates or changes to their upcoming plans, bookings, deliveries, and other time-sensitive topics. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+So I'm interested how we can easily add receiving push notifications to our web app. In today's tutorial, I'm going to do it through Firebase Cloud Messaging (FCM). It is a cross-platform messaging solution that lets you reliably send messages at no cost.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
+1. Clone this repository
+```
+git clone git@github.com:Gapur/firebase-push-notifications.git
+```
+2. Install dependencies
+```
+npm install
+```
+3. Launch app
+```
+npm run start # for npm
+
+## How to contribute?
+
+1. Fork this repo
+2. Clone your fork
+3. Code 🤓
+4. Test your changes
+5. Submit a PR!
