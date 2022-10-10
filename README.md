@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="300"src="https://github.com/Gapur/firebase-push-notifications/blob/main/demo.gif">
+  <img width="300"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/demo.gif">
 </p>
 
 # Firebase Push Notifications
