@@ -25,6 +25,7 @@ npm install
 3. Launch app
 ```
 npm run start # for npm
+```
 
 ## How to contribute?
 
