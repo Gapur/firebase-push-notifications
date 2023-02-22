@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/demo.gif">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/logo.png">
 </p>
 
 # Firebase Push Notifications
@@ -80,22 +80,49 @@ npm install --save react-toastify
 
 Here’s how it looks:
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example1.gif">
+</p>
+
 ## Firebase Setup
 
 If you don’t already have an account at Firebase yet, you should create one. After successfully creating an account, you will be redirected to Firebase Console where you can create a project by clicking the Create a project button and filling in the required fields.
 
 If you have created a project before, you will have a list of project cards. In this case, you need to click Add project to create a new one.
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example2.png">
+</p>
+
 After clicking Add project, we need to give the project an appropriate name.
+
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example3.png">
+</p>
 
 Then we have to enable or disable analytics depending on your preference.
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example4.png">
+</p>
 
 Awesome, we have done it. Here we have iOS, Android, and `<>` web options.
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example5.png">
+</p>
+
 Next, we need to register our web app with the firebase project by clicking on the web option `<>` button. It will then generate a firebase config file which we will soon integrate into the React app.
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example6.png">
+</p>
+
 Let’s use the firebase-push-notifications nickname.
+
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example7.png">
+</p>
 
 The firebaseConfig will be integrated into our React app, which will link it to this particular Firebase project.
 
@@ -136,6 +163,10 @@ The getToken method requires parameters.
 1. Voluntary Application Server Identification or VAPID key
 
 You can get by clicking `Project overview > Project settings > Cloud Messaging` for your project in the Firebase Console, then scroll to the Web configuration section. After that, you can just click on Generate key pair in the Web Push certificates tab.
+
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example8.png">
+</p>
 
 2. serviceWorkerRegistration
 
@@ -226,6 +257,10 @@ We checked Notification.permission property which indicates the current permissi
 
 Cool, we are almost done.
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example9.png">
+</p>
+
 # Receive Push Notifications
 
 ## Receive messages in the background
@@ -301,6 +336,18 @@ Now we are all set to receive both foreground and background notifications in ou
 ## Let’s Test Our Push Notifications
 
 We can test by going to the Firebase Console > Cloud Messaging > Send First Message.
+
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example10.png">
+</p>
+
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example11.png">
+</p>
+
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example12.png">
+</p>
 
 # Conclusion
 
