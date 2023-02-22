@@ -10,7 +10,7 @@ How to receive push notifications
 
 Push notifications are small pop-up messages sent to a user's device or web app that appear even when the app is not open. They can alert real-time updates or changes to their upcoming plans, bookings, deliveries, and other time-sensitive topics. 
 
-So I'm interested how we can easily add receiving push notifications to our web app. In today's tutorial, I'm going to do it through Firebase Cloud Messaging (FCM). It is a cross-platform messaging solution that lets you reliably send messages at no cost.
+So I'm interested how we can easily add receiving push notifications to our web app. In today's tutorial, I'm going to do it through [Firebase Cloud Messaging (FCM)](https://firebase.google.com/products/cloud-messaging?gclid=Cj0KCQjw4omaBhDqARIsADXULuXjc3usXl7wxVaW_mdNdiv6CLc5p_lCc7Atsz_V6Icjg62Atj5WLmkaAqmKEALw_wcB&gclsrc=aw.ds). It is a cross-platform messaging solution that lets you reliably send messages at no cost.
 
 ## Getting Started
 
@@ -86,15 +86,15 @@ Here’s how it looks:
 
 ## Firebase Setup
 
-If you don’t already have an account at Firebase yet, you should create one. After successfully creating an account, you will be redirected to Firebase Console where you can create a project by clicking the Create a project button and filling in the required fields.
+If you don’t already have an account at [Firebase](https://firebase.google.com) yet, you should create one. After successfully creating an account, you will be redirected to [Firebase Console](https://console.firebase.google.com) where you can create a project by clicking the Create a project button and filling in the required fields.
 
-If you have created a project before, you will have a list of project cards. In this case, you need to click Add project to create a new one.
+If you have created a project before, you will have a list of project cards. In this case, you need to click `Add project` to create a new one.
 
 <p align="center">
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example2.png">
 </p>
 
-After clicking Add project, we need to give the project an appropriate name.
+After clicking `Add project`, we need to give the project an appropriate name.
 
 <p align="center">
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example3.png">
@@ -106,7 +106,7 @@ Then we have to enable or disable analytics depending on your preference.
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example4.png">
 </p>
 
-Awesome, we have done it. Here we have iOS, Android, and `<>` web options.
+Awesome, we have done it. Here we have `iOS`, `Android`, and `<>` web options.
 
 <p align="center">
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example5.png">
@@ -118,17 +118,17 @@ Next, we need to register our web app with the firebase project by clicking on t
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example6.png">
 </p>
 
-Let’s use the firebase-push-notifications nickname.
+Let’s use the `firebase-push-notifications` nickname.
 
 <p align="center">
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example7.png">
 </p>
 
-The firebaseConfig will be integrated into our React app, which will link it to this particular Firebase project.
+The `firebaseConfig` will be integrated into our React app, which will link it to this particular Firebase project.
 
 ## Connect to Firebase Cloud Messaging
 
-To connect to Firebase Cloud Messaging we need to install the firebase lib by running:
+To connect to `Firebase Cloud Messaging` we need to install the [firebase](https://www.npmjs.com/package/firebase) lib by running:
 
 ```
 npm install --save firebase
@@ -156,13 +156,13 @@ const firebaseApp = initializeApp(firebaseConfig);
 const messaging = getMessaging(firebaseApp);
 ```
 
-Last but not least, we’ll create a function called getFirebaseToken that uses the Firebase getToken method. This allows you to receive push notifications. If notification permission has not been granted, this method will request the user for permission to notification. Otherwise, it returns the token or rejects the promise due to an error.
+Last but not least, we’ll create a function called `getFirebaseToken` that uses the Firebase `getToken` method. This allows you to receive push notifications. If notification permission has not been granted, this method will request the user for permission to notification. Otherwise, it returns the token or rejects the promise due to an error.
 
-The getToken method requires parameters.
+The `getToken` method requires parameters.
 
 1. Voluntary Application Server Identification or VAPID key
 
-You can get by clicking `Project overview > Project settings > Cloud Messaging` for your project in the Firebase Console, then scroll to the Web configuration section. After that, you can just click on Generate key pair in the Web Push certificates tab.
+You can get by clicking `Project overview > Project settings > Cloud Messaging` for your project in the Firebase Console, then scroll to the `Web configuration` section. After that, you can just click on `Generate key pair` in the `Web Push certificates` tab.
 
 <p align="center">
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example8.png">
@@ -170,7 +170,7 @@ You can get by clicking `Project overview > Project settings > Cloud Messaging` 
 
 2. serviceWorkerRegistration
 
-We will use a service worker to work with push notifications. Service worker is a script that works in the background of the browser without user interaction. We don’t have a service worker right now, but we’ll create one in the next section.
+We will use a service worker to work with push notifications. Service worker is a script that works in the background of the browser without user interaction. We don’t have a [service worker](https://developer.mozilla.org/en-US/docs/Web/API/Service_Worker_API/Using_Service_Workers) right now, but we’ll create one in the next section.
 
 ```js
 export const getOrRegisterServiceWorker = () => {
@@ -253,7 +253,7 @@ export default function App() {
 }
 ```
 
-We checked Notification.permission property which indicates the current permission granted by the user to display web notifications. If we click enable push notifications it will get a firebase token and hide the banner.
+We checked `Notification.permission` property which indicates the current permission granted by the user to display web notifications. If we click `enable push notifications` it will get a firebase token and hide the banner.
 
 Cool, we are almost done.
 
@@ -298,7 +298,7 @@ This service worker will handle all notifications coming to the app while it is 
 
 ## Receive messages in the foreground
 
-For foreground notifications, we need to add this code to the firebase.js file:
+For foreground notifications, we need to add this code to the `firebase.js` file:
 
 ```js
 import { initializeApp } from 'firebase/app';
@@ -317,7 +317,7 @@ export const onForegroundMessage = () =>
   new Promise((resolve) => onMessage(messaging, (payload) => resolve(payload)));
 ```
 
-Last, We need to use onForegroundMessage in App.js file:
+Last, We need to use `onForegroundMessage` in `App.js` file:
 
 ```js
 useEffect(() => {
@@ -335,7 +335,7 @@ Now we are all set to receive both foreground and background notifications in ou
 
 ## Let’s Test Our Push Notifications
 
-We can test by going to the Firebase Console > Cloud Messaging > Send First Message.
+We can test by going to the `Firebase Console > Cloud Messaging > Send First Message`.
 
 <p align="center">
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example10.png">
@@ -349,10 +349,17 @@ We can test by going to the Firebase Console > Cloud Messaging > Send First Mess
   <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/example12.png">
 </p>
 
+<p align="center">
+  <img width="620px"src="https://raw.githubusercontent.com/Gapur/firebase-push-notifications/main/src/assets/demo.gif">
+</p>
+
 # Conclusion
 
 Thanks for reading — I hope you found this piece useful. Happy coding!
 
+## Article on Medium
+
+[Push Notifications With React And Firebase](https://javascript.plainenglish.io/push-notifications-with-react-and-firebase-8f7cf9372ac7)
 
 ## How to contribute?
 
